@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoleculeAI: Drug Discovery Assistant</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/dash_style.css')}}">
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <header>
+        <div class="logo">MoleculeAI: Drug Discovery Assistant</div>
+        <nav>
+            <ul>
+                <li class="nav-item active" data-page="dashboard">Dashboard</li>
+                <li class="nav-item" data-page="molecule-designer">Molecule Designer</li>
+                <li class="nav-item" data-page="analysis">Analysis</li>
+                <li class="nav-item" data-page="library">Library</li>
+                <li class="nav-item" data-page="help">Help</li>
+            </ul>
+        </nav>
+        <div class="user-profile">
+            <div class="avatar">JD</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">PROJECTS</div>
+                <div class="project-item active" data-project-id="1">COVID-19 Inhibitors</div>
+                <div class="project-item" data-project-id="2">Cancer Therapeutics</div>
+                <div class="project-item" data-project-id="3">Antibacterial Research</div>
+                <div class="project-item add-project">Create New Project</div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">TOOLS</div>
+                <div class="tool-item" data-tool="generator">Molecule Generator</div>
+                <div class="tool-item" data-tool="predictor">Property Predictor</div>
+                <div class="tool-item" data-tool="target">Target Analysis</div>
+                <div class="tool-item" data-tool="admet">ADMET Calculator</div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-title">RECENT HISTORY</div>
+                <div class="history-item" data-history-id="1">Benzamide derivative #42</div>
+                <div class="history-item" data-history-id="2">ACE2 binding analysis</div>
+                <div class="history-item" data-history-id="3">Toxicity prediction batch</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Molecule Visualization Card -->
+            <div class="card" id="molecule-card">
+                <div class="card-title">Molecule Visualization</div>
+                <div class="molecule-viewer" id="molecule-viewer">
+                    <svg class="molecule-svg" viewBox="0 0 200 200">
+                        <circle cx="100" cy="100" r="80" fill="none" stroke="#3498db" stroke-width="2" />
+                        <circle cx="60" cy="70" r="20" fill="#e74c3c" />
+                        <text x="60" y="75" font-size="12" fill="white" text-anchor="middle">O</text>
+                        <circle cx="140" cy="80" r="20" fill="#2ecc71" />
+                        <text x="140" y="85" font-size="12" fill="white" text-anchor="middle">N</text>
+                        <circle cx="100" cy="140" r="20" fill="#3498db" />
+                        <text x="100" y="145" font-size="12" fill="white" text-anchor="middle">C</text>
+                        <line x1="60" y1="70" x2="100" y2="140" stroke="#34495e" stroke-width="2" />
+                        <line x1="140" y1="80" x2="100" y2="140" stroke="#34495e" stroke-width="2" />
+                        <line x1="60" y1="70" x2="140" y2="80" stroke="#34495e" stroke-width="2" stroke-dasharray="5,5" />
+                    </svg>
+                </div>
+                <div class="molecule-controls">
+                    <div class="button primary" id="optimize-btn">Optimize Structure</div>
+                    <div class="button secondary" id="edit-btn">Edit Structure</div>
+                </div>
+                <div class="molecule-input">
+                    <label for="smiles-input">SMILES String:</label>
+                    <input type="text" id="smiles-input" placeholder="CC(=O)OC1=CC=CC=C1C(=O)O" value="CC(=O)OC1=CC=CC=C1C(=O)O">
+                    <div class="button primary" id="load-smiles">Load</div>
+                </div>
+            </div>
+
+            <!-- Properties Card -->
+            <div class="card" id="properties-card">
+                <div class="card-title">Predicted Properties</div>
+                <div class="properties-list" id="property-list">
+                    <div class="property-item">Molecular Weight: <span class="property-value" id="mol-weight">327.4 g/mol</span></div>
+                    <div class="property-item">LogP: <span class="property-value" id="logp">2.7</span></div>
+                    <div class="property-item">H-Bond Donors: <span class="property-value" id="hbond-donors">2</span></div>
+                    <div class="property-item">H-Bond Acceptors: <span class="property-value" id="hbond-acceptors">5</span></div>
+                    <div class="property-item">Bioavailability Score: <span class="property-value" id="bioavailability">0.85</span></div>
+                    <div class="property-item">Synthetic Accessibility: <span class="property-value" id="synth-access">3.2</span></div>
+                </div>
+                <div class="radar-chart">
+                    <svg viewBox="0 0 150 150" id="druglikeness-chart">
+                        <polygon points="75,30 120,75 75,120 30,75" fill="none" stroke="#9b59b6" stroke-width="2" />
+                        <polygon points="75,45 105,75 75,105 45,75" fill="rgba(155, 89, 182, 0.3)" />
+                        <text x="75" y="20" font-size="10" fill="#2c3e50" text-anchor="middle">Drug-likeness</text>
+                        <text x="125" y="75" font-size="8" fill="#2c3e50" text-anchor="middle">Lipinski</text>
+                        <text x="75" y="130" font-size="8" fill="#2c3e50" text-anchor="middle">PAINS</text>
+                        <text x="25" y="75" font-size="8" fill="#2c3e50" text-anchor="middle">Veber</text>
+                    </svg>
+                </div>
+                <div class="button secondary" id="analyze-btn">Run Advanced Analysis</div>
+            </div>
+
+            <!-- AI Generation Parameters Card -->
+            <div class="card" id="parameters-card">
+                <div class="card-title">AI Generation Parameters</div>
+                <div class="slider-container">
+                    <div class="slider-label">Similarity to Reference: <span class="slider-value" id="similarity-value">50%</span></div>
+                    <div class="slider" id="similarity-slider">
+                        <div class="slider-thumb" style="left: 50%"></div>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-label">Novelty Factor: <span class="slider-value" id="novelty-value">70%</span></div>
+                    <div class="slider" id="novelty-slider">
+                        <div class="slider-thumb" style="left: 70%"></div>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-label">Target Affinity Optimization: <span class="slider-value" id="affinity-value">85%</span></div>
+                    <div class="slider" id="affinity-slider">
+                        <div class="slider-thumb" style="left: 85%"></div>
+                    </div>
+                </div>
+                <div class="target-selection">
+                    <label for="target-select">Target Protein:</label>
+                    <select id="target-select">
+                        <option value="ace2">ACE2 Receptor</option>
+                        <option value="3clpro">SARS-CoV-2 3CL Protease</option>
+                        <option value="kinase">Tyrosine Kinase</option>
+                        <option value="custom">Custom Target</option>
+                    </select>
+                </div>
+                <div class="button primary" id="generate-btn">Generate Compounds</div>
+            </div>
+
+            <!-- Recommendations Card -->
+            <div class="card" id="recommendations-card">
+                <div class="card-title">AI Recommendations</div>
+                <div class="tabs">
+                    <div class="tab active" data-tab="similar">Similar</div>
+                    <div class="tab inactive" data-tab="novel">Novel</div>
+                    <div class="tab inactive" data-tab="optimal">Optimal</div>
+                </div>
+                <div class="molecules-grid" id="molecules-grid">
+                    <div class="molecule-thumbnail" data-molecule-id="1">
+                        <div class="thumbnail-box active">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="thumbnail-label">93% Match</div>
+                    </div>
+                    <div class="molecule-thumbnail" data-molecule-id="2">
+                        <div class="thumbnail-box inactive">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="thumbnail-label">87% Match</div>
+                    </div>
+                    <div class="molecule-thumbnail" data-molecule-id="3">
+                        <div class="thumbnail-box inactive">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="thumbnail-label">82% Match</div>
+                    </div>
+                </div>
+                <div class="results-pagination">
+                    <span class="page-btn" id="prev-page">◀</span>
+                    <span class="page-indicator">Page 1 of 3</span>
+                    <span class="page-btn" id="next-page">▶</span>
+                </div>
+                <div class="button success" id="more-compounds-btn">Generate More Compounds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Processing molecule data...</div>
+    </div>
+
+    <!-- Modal Dialogs -->
+    <div class="modal" id="analysis-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Advanced Analysis Results</div>
+                <div class="modal-close">&times;</div>
+            </div>
+            <div class="modal-body">
+                <div class="analysis-tabs">
+                    <div class="analysis-tab active" data-analysis-tab="admet">ADMET</div>
+                    <div class="analysis-tab" data-analysis-tab="docking">Docking</div>
+                    <div class="analysis-tab" data-analysis-tab="toxicity">Toxicity</div>
+                </div>
+                <div class="analysis-content" id="analysis-content">
+                    <!-- Content will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="button secondary" id="close-analysis">Close</div>
+                <div class="button primary" id="export-analysis">Export Report</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
