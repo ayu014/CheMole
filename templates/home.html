@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheMole: Drug Discovery Assistant</title>
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/home_style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-dna"></i>
+                <span>CheMole</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="login-btn" id="loginBtn">Login</button>
+                <button class="signup-btn" id="signupBtn">Sign Up</button>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Accelerate Drug Discovery with AI</h1>
+                <p>Transform your research pipeline with our generative AI-powered platform for efficient drug candidate identification, design, and optimization.</p>
+                <div class="hero-buttons">
+                    <button class="primary-btn">Get Started</button>
+                    <button class="secondary-btn">Watch Demo</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/500/350" alt="CheMole Platform Visualization">
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <h3>85%</h3>
+                <p>Reduction in Discovery Time</p>
+            </div>
+            <div class="stat-card">
+                <h3>60%</h3>
+                <p>Cost Savings</p>
+            </div>
+            <div class="stat-card">
+                <h3>3.2x</h3>
+                <p>More Viable Candidates</p>
+            </div>
+            <div class="stat-card">
+                <h3>10k+</h3>
+                <p>Molecules Analyzed Daily</p>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <h2>Powerful AI-Driven Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Molecule Designer</h3>
+                    <p>Interactive tool to design and modify molecular structures with real-time property prediction.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Advanced Analysis</h3>
+                    <p>Comprehensive analysis of binding affinity, toxicity, and pharmacokinetic properties.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Generation</h3>
+                    <p>Generate novel compounds with desired properties using our state-of-the-art generative models.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Target Analysis</h3>
+                    <p>Identify potential drug targets and predict interactions with biological systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>ADMET Calculator</h3>
+                    <p>Predict absorption, distribution, metabolism, excretion, and toxicity properties.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Compound Library</h3>
+                    <p>Access a vast library of compounds with comprehensive property data.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="workflow-section">
+            <h2>Streamlined Research Workflow</h2>
+            <div class="workflow-container">
+                <div class="workflow-step">
+                    <div class="step-number">1</div>
+                    <h3>Define Target</h3>
+                    <p>Specify your research target and desired molecular properties.</p>
+                </div>
+                <div class="workflow-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">2</div>
+                    <h3>Generate Candidates</h3>
+                    <p>AI generates potential drug candidates based on your parameters.</p>
+                </div>
+                <div class="workflow-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">3</div>
+                    <h3>Analyze & Optimize</h3>
+                    <p>Evaluate candidates and optimize structures for desired properties.</p>
+                </div>
+                <div class="workflow-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="workflow-step">
+                    <div class="step-number">4</div>
+                    <h3>Export Results</h3>
+                    <p>Download comprehensive reports and molecular structures.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Dashboard Preview -->
+        <section class="dashboard-preview">
+            <h2>Intuitive Research Dashboard</h2>
+            <p>Manage all your drug discovery projects in one centralized platform</p>
+            <div class="dashboard-image">
+                <img src="/api/placeholder/900/500" alt="CheMole Dashboard">
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials-section">
+            <h2>Trusted by Leading Researchers</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"CheMole reduced our lead discovery time by 70% and helped us identify novel compounds we would have otherwise missed."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Dr. Sarah Chen</h4>
+                            <p>Research Director, PharmaTech Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"The platform's property prediction accuracy has been remarkable. It's become an essential tool in our drug development pipeline."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4>Prof. Michael Rodriguez</h4>
+                            <p>University of Biomedical Sciences</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <h2>About CheMole</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>CheMole was founded with a mission to revolutionize the drug discovery process through cutting-edge AI technology. Our platform addresses the critical challenges of traditional drug discovery: time, cost, and efficiency.</p>
+                    <p>By leveraging advanced generative models, molecular dynamics simulations, and deep learning algorithms, we enable researchers to explore chemical space more effectively, predict molecular properties with high accuracy, and optimize compounds for desired characteristics.</p>
+                    <p>Our team combines expertise in medicinal chemistry, computational biology, and artificial intelligence to deliver a powerful yet intuitive platform for accelerating pharmaceutical research.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/400/300" alt="CheMole Team">
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>Ready to Transform Your Research?</h2>
+            <p>Join leading research institutions and pharmaceutical companies already leveraging CheMole.</p>
+            <div class="cta-buttons">
+                <button class="primary-btn">Start Free Trial</button>
+                <button class="secondary-btn">Request Demo</button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="Your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="primary-btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@CheMole.com</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+1 (800) 555-MOLECULE</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Innovation Drive, Boston, MA 02115</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-bottom">
+                <p>© 2025 CheMole. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
