@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoleculeAI: Drug Discovery Assistant</title>
+    <title>CheMole: Drug Discovery Assistant</title>
     <link rel="stylesheet" href="{{url_for('static',filename = 'css/dash_style.css')}}">
-    <!-- <script src="main.js"></script> -->
+    <script src="{{ url_for('static', filename='script/dash_script.js') }}"></script>
 </head>
 <body>
     <header>
-        <div class="logo">MoleculeAI: Drug Discovery Assistant</div>
+        <div class="logo">CheMole</div>
         <nav>
             <ul>
                 <li class="nav-item active" data-page="dashboard">Dashboard</li>
@@ -20,7 +20,7 @@
             </ul>
         </nav>
         <div class="user-profile">
-            <div class="avatar">JD</div>
+            <div class="avatar">AY</div>
         </div>
     </header>
 
